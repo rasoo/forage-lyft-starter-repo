@@ -1,12 +1,10 @@
-from datetime import datetime
 
-from engine.sternman_engine import SternmanEngine
+from abc import ABC
+from engine.splinder_battery import SplinderBattery
+from engine.model.Class.car import Car
+from engine.sternman_engine  import SternmanEngine
 
-
-class Palindrome(SternmanEngine):
+class Palindrome(SternmanEngine, SplinderBattery, Car, ABC):
+    
     def needs_service(self):
-        service_threshold_date = self.last_service_date.replace(year=self.last_service_date.year + 4)
-        if service_threshold_date < datetime.today().date() or self.engine_should_be_serviced():
-            return True
-        else:
-            return False
+        return Car.needs_service
